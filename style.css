@@ -175,7 +175,7 @@ img {
   justify-content: space-between;
   gap: 2rem;
   height: 80px;
-  padding: 0 0 0 2rem;
+  padding: 0 2rem;
   background: var(--color-second);
   box-shadow: 0px 10px 0px 0px #000000;
 }
@@ -230,12 +230,6 @@ img {
   padding: 0 15px;
   font-size: var(--text-body-2);
   box-shadow: 5px 5px 0 0 var(--color-black-first);
-}
-
-.navbar__divider {
-  width: 10px;
-  flex-shrink: 0;
-  background: var(--color-black-first);
 }
 
 /* =========================================================
