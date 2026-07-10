@@ -243,7 +243,7 @@ img {
    ========================================================= */
 .hero {
   position: relative;
-  min-height: 788px;
+  min-height: 805px;
   overflow: hidden;
 }
 
@@ -253,10 +253,40 @@ img {
   z-index: 0;
 }
 
-.hero__bg img {
+/* Foto nítida: cobre o hero inteiro, embaixo de tudo */
+.hero__bg-sharp {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 0;
+}
+
+/* Foto pixelada: já vem pré-recortada (920px de 1440px = 63,9%),
+   fica por cima, colada na esquerda, cobrindo só sua própria largura.
+   Como está em cima (z-index maior), esconde a nítida nessa faixa,
+   deixando a nítida visível só do lado direito, sem sobrar. */
+.hero__bg-pixel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 63.9%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  image-rendering: pixelated;
+}
+
+/* Linha divisória preta entre as duas fotos */
+.hero__divider {
+  position: absolute;
+  top: 0;
+  left: 63.9%;
+  width: 5px;
+  height: 100%;
+  background: var(--color-black-first);
+  z-index: 2;
 }
 
 .hero__card {
@@ -548,6 +578,26 @@ img {
   font-size: 1rem;
   padding: 1rem;
   box-shadow: 5px 5px 0 0 var(--color-black-first);
+}
+
+.contact__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-status {
+  min-height: 1.5rem;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+}
+
+.form-status--success {
+  color: var(--color-success);
+}
+
+.form-status--error {
+  color: var(--color-error);
 }
 
 /* =========================================================

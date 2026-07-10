@@ -34,7 +34,9 @@
   <!-- ===== BANNER ===== -->
   <section class="hero">
     <div class="hero__bg">
-      <img src="assets/img/banner.png" alt="Sthefany Anaide">
+      <img class="hero__bg-sharp" src="assets/img/img-nitida.svg" alt="Sthefany Anaide">
+      <img class="hero__bg-pixel" src="assets/img/img-pixelada.png" alt="">
+      <div class="hero__divider"></div>
     </div>
 
     <div class="hero__card">
@@ -196,31 +198,31 @@
   <!-- ===== CONTATOS ===== -->
   <section id="contatos" class="contact">
     <h2 class="section-title">Contatos</h2>
- 
+
     <form id="contactForm" class="contact__form">
       <input type="hidden" name="access_key" value="e2cbd068-ba6a-48d7-b345-03fb3a1e66c8">
- 
+
       <!-- Campo "armadilha" anti-spam: fica escondido pro humano, mas bots preenchem.
            Se vier preenchido, o Web3Forms descarta o envio automaticamente. -->
       <input type="checkbox" name="botcheck" class="hidden-field" style="display:none">
- 
+
       <label class="field">
         <span class="field__label">Nome</span>
         <input type="text" name="nome" class="field__input" required>
       </label>
- 
+
       <label class="field">
         <span class="field__label">Email</span>
         <input type="email" name="email" class="field__input" required>
       </label>
- 
+
       <label class="field">
         <span class="field__label">Mensagem</span>
         <textarea name="mensagem" class="field__input field__textarea" rows="6" required></textarea>
       </label>
- 
+
       <button type="submit" class="btn btn--pink contact__submit">Enviar</button>
- 
+
       <p id="formStatus" class="form-status" aria-live="polite"></p>
     </form>
   </section>
@@ -247,9 +249,6 @@
       const originalItems = Array.from(track.children);
       const total = originalItems.length;
 
-      // Clona os itens 3x (cópia-antes / cópia-atual / cópia-depois).
-      // É isso que permite o loop infinito sem "pulo" visível: sempre existe
-      // uma logo pronta pra entrar de qualquer um dos dois lados.
       track.innerHTML = '';
       for (let copy = 0; copy < 3; copy++) {
         originalItems.forEach((item) => {
@@ -257,8 +256,8 @@
         });
       }
 
-      let currentIndex = total; // começa no 1º item da cópia "do meio"
-      let visibleCount = 4;     // quantas logos ficam visíveis ao mesmo tempo
+      let currentIndex = total;
+      let visibleCount = 4;
 
       function getGapPx() {
         return parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || 0);
@@ -272,8 +271,6 @@
         else visibleCount = 4;
       }
 
-      // Calcula a largura de cada item pra que "visibleCount" logos preencham
-      // exatamente a largura do viewport, sem sobrar espaço vazio.
       function applyItemWidth() {
         const gap = getGapPx();
         const totalGap = gap * (visibleCount - 1);
@@ -305,10 +302,6 @@
         update(true);
       }
 
-      // Quando a animação termina, se a gente entrou numa das cópias extras,
-      // "teletransporta" de volta pra cópia do meio SEM animação (instantâneo).
-      // Como as cópias são idênticas, o olho não percebe o truque — parece
-      // que o carrossel nunca acaba.
       track.addEventListener('transitionend', () => {
         if (currentIndex >= total * 2) {
           currentIndex -= total;
@@ -331,23 +324,22 @@
       update(false);
     })();
   </script>
-</body>
-</html>
- <!-- ===== ENVIO DO FORMULÁRIO DE CONTATO (Web3Forms) ===== -->
+
+  <!-- ===== ENVIO DO FORMULÁRIO DE CONTATO (Web3Forms) ===== -->
   <script>
     (function () {
       const form = document.getElementById('contactForm');
       const status = document.getElementById('formStatus');
       if (!form || !status) return;
- 
+
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
- 
+
         const submitBtn = form.querySelector('.contact__submit');
         submitBtn.disabled = true;
         status.textContent = 'Enviando...';
         status.className = 'form-status';
- 
+
         try {
           const formData = new FormData(form);
           const response = await fetch('https://api.web3forms.com/submit', {
@@ -355,9 +347,9 @@
             headers: { 'Accept': 'application/json' },
             body: formData
           });
- 
+
           const result = await response.json();
- 
+
           if (result.success) {
             status.textContent = 'Mensagem enviada com sucesso! Vou te responder em breve.';
             status.classList.add('form-status--success');
