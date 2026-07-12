@@ -592,10 +592,6 @@ img {
     padding: 24px 16px 24px;
   }
 
-  /* aspect-ratio 3/4 evita uma caixa excessivamente alta/estreita (como o
-     100vh anterior), o que reduz o corte lateral necessário pro cover
-     cobrir a caixa inteira. */
-
   .hero__bg-sharp {
     object-position: right center;
   }
