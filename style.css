@@ -1,51 +1,28 @@
-/* =========================================================
-   FONTS
-   Google Fonts: "Press Start 2P" (headline/title/subtitle)
-   + "Fira Code" (body/caption)
-   ========================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fira+Code:wght@300;400;500&display=swap');
 
-/* =========================================================
-   VARIÁVEIS / PALETA (tokens do Figma)
-   ========================================================= */
 :root {
-  /* Base */
   --color-first: #F25A70;
   --color-second: #7C5E99;
   --color-third: #FFFFFF;
-
-  /* Blacks */
   --color-black-first: #000000;
   --color-black-second: #3A4042;
   --color-black-third: #828282;
-
-  /* Status */
   --color-error: #BA1F33;
   --color-warning: #CEB02A;
   --color-success: #62C370;
-
-  /* Auxiliar (fora do sistema de tokens, usado só na barra de skill) */
   --color-cream: #f4f1ea;
-
-  /* Tipografia */
   --font-display: 'Press Start 2P', monospace;
   --font-body: 'Fira Code', monospace;
-
-  /* Escala tipográfica (tokens do Figma) */
-  --text-headline: 40px;   /* Press Start 2P, Regular */
-  --text-title: 30px;      /* Press Start 2P, Regular */
-  --text-subtitle: 25px;   /* Press Start 2P, Regular */
-  --text-body-1: 30px;     /* Fira Code, Light (300) */
-  --text-body-2: 20px;     /* Fira Code, Medium (500) */
-  --text-caption: 20px;    /* Fira Code, Regular (400) */
-
+  --text-headline: 40px;
+  --text-title: 30px;
+  --text-subtitle: 25px;
+  --text-body-1: 30px;
+  --text-body-2: 20px;
+  --text-caption: 20px;
   --container-width: 1200px;
   --border-pixel: 0px;
 }
 
-/* =========================================================
-   UTILITÁRIOS DE TIPOGRAFIA (tokens do Figma)
-   ========================================================= */
 .text-headline {
   font-family: var(--font-display);
   font-weight: 400;
@@ -99,6 +76,7 @@ body {
   line-height: 1.5;
   background: var(--color-black-first);
   color: var(--color-third);
+  overflow-x: hidden;
 }
 
 img {
@@ -116,9 +94,6 @@ img {
   margin-bottom: 3rem;
 }
 
-/* =========================================================
-   SEPARADORES ENTRE SEÇÕES
-   ========================================================= */
 .separator {
   height: 0;
   border: 10px solid;
@@ -136,9 +111,6 @@ img {
   border-color: var(--color-first);
 }
 
-/* =========================================================
-   BOTÕES
-   ========================================================= */
 .btn {
   display: inline-block;
   font-family: var(--font-body);
@@ -166,16 +138,14 @@ img {
   color: var(--color-third);
 }
 
-/* =========================================================
-   NAVBAR
-   ========================================================= */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
-  height: 80px;
-  padding: 0 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  min-height: 80px;
+  padding: 1rem 2rem;
   background: var(--color-second);
   box-shadow: 0px 10px 0px 0px #000000;
 }
@@ -189,7 +159,8 @@ img {
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: 1.875rem; /* ~30px, medido a partir do grupo 492px / 4 itens */
+  flex-wrap: wrap;
+  gap: 1.875rem; 
   list-style: none;
 }
 
@@ -199,7 +170,7 @@ img {
   text-decoration: none;
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: var(--text-caption); /* 20px, Fira Code Regular */
+  font-size: var(--text-caption);
   padding-left: 1.35rem;
 }
 
@@ -216,28 +187,26 @@ img {
 
 .navbar__right {
   display: flex;
-  align-items: stretch;
-  align-self: stretch;
-  height: 100%;
+  align-items: center;
 }
 
 .navbar__cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  align-self: center;
   height: 60px;
   padding: 0 15px;
   font-size: var(--text-body-2);
   box-shadow: 5px 5px 0 0 var(--color-black-first);
 }
 
-/* =========================================================
-   HERO
-   ========================================================= */
 .hero {
   position: relative;
   min-height: 805px;
+  display: flex;
+  align-items: flex-start;
+  padding-top: clamp(60px, 12vw, 125px);
+  padding-left: clamp(20px, 6vw, 90px);
   overflow: hidden;
 }
 
@@ -247,20 +216,17 @@ img {
   z-index: 0;
 }
 
-/* Foto nítida: cobre o hero inteiro, embaixo de tudo */
 .hero__bg-sharp {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: left center;
   z-index: 0;
 }
 
-/* Foto pixelada: já vem pré-recortada (920px de 1440px = 63,9%),
-   fica por cima, colada na esquerda, cobrindo só sua própria largura.
-   Como está em cima (z-index maior), esconde a nítida nessa faixa,
-   deixando a nítida visível só do lado direito, sem sobrar. */
 .hero__bg-pixel {
   position: absolute;
   top: 0;
@@ -268,11 +234,11 @@ img {
   width: 63.9%;
   height: 100%;
   object-fit: cover;
+  object-position: left center;
   z-index: 1;
   image-rendering: pixelated;
 }
 
-/* Linha divisória preta entre as duas fotos */
 .hero__divider {
   position: absolute;
   top: 0;
@@ -283,41 +249,39 @@ img {
   z-index: 2;
 }
 
+.hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(627px, 90vw);
+}
+
 .hero__card {
-  position: absolute;
-  left: 90px;
-  top: 125px;
-  width: 627px;
+  width: 100%;
   height: 184px;
-  z-index: 1;
   background: var(--color-black-second);
   border: var(--border-pixel);
   box-shadow: 7px 7px 0 0 var(--color-black-first);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero__name {
-  position: absolute;
-  left: 17px;
-  top: 36px;
-  width: 608px;
-  height: 44px;
   margin: 0;
-  white-space: nowrap;
   font-family: var(--font-display);
   font-weight: 400;
   font-size: var(--text-headline);
-  line-height: 1;
   color: var(--color-first);
   text-shadow: 4px 4px 0 var(--color-black-first);
+  white-space: nowrap;
 }
 
 .hero__role {
-  position: absolute;
-  left: 178px;
-  top: 110px;
-  width: 270px;
-  height: 30px;
-  margin: 0;
+  margin: 20px 0 0 0;
   font-family: var(--font-display);
   font-weight: 400;
   font-size: var(--text-subtitle);
@@ -326,12 +290,11 @@ img {
 }
 
 .hero__actions {
-  position: absolute;
-  left: 181px;
-  top: 338px;
-  z-index: 1;
   display: flex;
+  justify-content: center;
   gap: 112px;
+  margin-top: 42px;
+  width: 100%;
 }
 
 .hero__actions .btn {
@@ -339,9 +302,6 @@ img {
   text-shadow: 2px 2px 0 var(--color-black-first);
 }
 
-/* =========================================================
-   SKILLS
-   ========================================================= */
 .skills {
   background: var(--color-first);
   padding: 4rem 2rem;
@@ -368,10 +328,21 @@ img {
   gap: 1rem;
 }
 
-.skill__icon {
-  width: 40px;
-  height: 40px;
+.skill__icon-slot {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+}
+
+.skill__icon {
+  width: auto;
+  height: auto;
+  max-width: 56px;
+  max-height: 48px;
+  object-fit: contain;
 }
 
 .skill__body {
@@ -399,9 +370,6 @@ img {
   background: var(--color-second);
 }
 
-/* =========================================================
-   PROJETOS
-   ========================================================= */
 .projects {
   background: var(--color-black-first);
   padding: 4rem 2rem;
@@ -430,9 +398,6 @@ img {
   object-fit: cover;
 }
 
-/* =========================================================
-   SOBRE / TIMELINE
-   ========================================================= */
 .about {
   background: var(--color-second);
   padding: 4rem 2rem;
@@ -523,9 +488,6 @@ img {
   color: var(--color-third);
 }
 
-/* =========================================================
-   CONTATOS
-   ========================================================= */
 .contact {
   background: var(--color-black-second);
   padding: 4rem 2rem;
@@ -594,9 +556,6 @@ img {
   color: var(--color-error);
 }
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
 .footer {
   background: var(--color-black-first);
   padding: 1.5rem;
@@ -614,40 +573,106 @@ img {
   height: 28px;
 }
 
-/* =========================================================
-   RESPONSIVO
-   ========================================================= */
 @media (max-width: 900px) {
-  .skills__grid {
-    grid-template-columns: 1fr;
-  }
-
+  .skills__grid, 
   .projects__grid {
     grid-template-columns: 1fr;
   }
 }
 
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 3 / 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 24px 16px 24px;
+  }
+
+  /* aspect-ratio 3/4 evita uma caixa excessivamente alta/estreita (como o
+     100vh anterior), o que reduz o corte lateral necessário pro cover
+     cobrir a caixa inteira. */
+
+  .hero__bg-sharp {
+    object-position: right center;
+  }
+
+  .hero__bg-pixel {
+    width: 50%;
+  }
+
+  .hero__divider {
+    left: 50%;
+    width: 4px;
+    display: block;
+  }
+
+  .hero__content {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    z-index: 3;
+  }
+
+  .hero__card {
+    width: 100%;
+    height: auto;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .hero__name {
+    font-size: clamp(20px, 6vw, 30px);
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .hero__role {
+    font-size: clamp(16px, 4vw, 20px);
+    margin-top: 10px;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+  
+  .about__text {
+    font-size: var(--text-body-2);
+  }
+}
+
 @media (max-width: 700px) {
   .navbar {
-    flex-wrap: wrap;
+    padding: 1rem;
     justify-content: center;
     text-align: center;
   }
 
   .navbar__links {
     order: 3;
-    flex-wrap: wrap;
+    width: 100%;
     justify-content: center;
+    gap: 10px;
   }
 
-  .hero__card,
-  .hero__actions {
-    left: 1rem;
-    right: 1rem;
+  .navbar__links a {
+    font-size: 14px;
+    padding-left: 10px;
   }
 
-  .hero__actions {
-    flex-direction: column;
+  .navbar__right {
+    order: 2;
   }
 
   .timeline {
