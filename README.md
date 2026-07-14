@@ -6,6 +6,13 @@ Este projeto é um portfólio pessoal, sendo um site de página única (one-page
 
 *   **Motivação:** Eu precisava criar um portfólio e também queria praticar HTML e CSS, então foi uma boa prática iniciar este projeto, inclusive desenvolvendo o protótipo no Figma.
 
+## 🌐 Acesse o Portfólio Online
+
+O projeto está publicado e pode ser visualizado em tempo real pelo link abaixo:
+
+👉 **[Acesse meu Portfólio Aqui](https://sthefanysaturnino.github.io/sthe-portifolio/index.html)**
+---
+
 ## Tecnologias Utilizadas
 
 * HTML5 semântico
