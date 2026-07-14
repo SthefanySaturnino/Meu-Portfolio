@@ -10,7 +10,7 @@ Este projeto é um portfólio pessoal, sendo um site de página única (one-page
 
 O projeto está publicado e pode ser visualizado em tempo real pelo link abaixo:
 
-👉 **[Acesse meu Portfólio Aqui](https://sthefanysaturnino.github.io/sthe-portifolio/index.html)**
+👉 **[Acesse meu Portfólio Aqui]([https://sthefanysaturnino.github.io/sthe-portifolio/index.html)](https://sthefanysaturnino.github.io/Meu-Portfolio/)**
 ---
 
 ## Tecnologias Utilizadas
